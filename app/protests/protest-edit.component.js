@@ -9,6 +9,8 @@ angular
         function getProtest () {
           ProtestDataCtrl.getById($routeParams.protestId)
             .then(protest => {
+              $scope.emissionDate = new Date(protest.payment.emissionDateTimestamp * 1000);
+              $scope.expirationDate = new Date(protest.payment.expirationDateTimestamp * 1000);
               $scope.protest = protest;
               $scope.enabled = true;
             })
@@ -18,6 +20,8 @@ angular
         }
 
         function editProtest () {
+          $scope.protest.payment.emissionDateTimestamp = $scope.emissionDate.getTime() / 1000;
+          $scope.protest.payment.expirationDateTimestamp = $scope.expirationDate.getTime() / 1000;
           $scope.protest.payment.titleNumber = $scope.protest.paymentTitleNumber;
           $scope.protest.payment.debtor.document = $scope.protest.payment.debtorDocument;
 

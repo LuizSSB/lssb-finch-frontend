@@ -4,7 +4,7 @@ angular
   .module('finch', [
     'ngRoute',
     'LocalStorageModule',
-
+    'ui.utils.masks',
     'oitozero.ngSweetAlert',
 
     'finch.login',

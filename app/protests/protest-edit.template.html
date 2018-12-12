@@ -6,7 +6,7 @@
       <div class="form-group">
         <label for="inputProtestValue">Valor Protestado</label>
         <input type="text" class="form-control" id="inputProtestValue"
-          placeholder="Valor em reais" ng-model="protest.value">
+          placeholder="Valor em reais" ui-money-mask ng-model="protest.value">
       </div>
       
       <hr />
@@ -15,12 +15,12 @@
       <div class="form-group">
         <label for="inputTitleNumber">Número Título</label>
         <input type="text" class="form-control" id="inputTitleNumber"
-          placeholder="Número inteiro" ng-model="protest.paymentTitleNumber">
+          placeholder="Número inteiro" ui-number-mask="0" ui-hide-group-sep ng-model="protest.paymentTitleNumber">
       </div>
       <div class="form-group">
         <label for="inputBankId">Código do Banco</label>
         <input type="text" class="form-control" id="inputBankId"
-          placeholder="Número inteiro" ng-model="protest.payment.bankId">
+          placeholder="Número inteiro" ui-number-mask="0" ui-hide-group-sep ng-model="protest.payment.bankId">
       </div>
       <div class="form-group">
         <label for="inputCreditorName">Nome do credor</label>
@@ -30,17 +30,27 @@
       <div class="form-group">
         <label for="inputEmissionDate">Data da emissão</label>
         <input type="text" class="form-control" id="inputEmissionDate"
-          placeholder="Data" ng-model="protest.payment.emissionDateTimestamp">
+          placeholder="Data" ng-model="emissionDate" ui-date-mask="DD-MM-YYYY">
+      </div>
+      <div class="form-group">
+        <label for="inputExpirationDate">Data da validade</label>
+        <input type="text" class="form-control" id="inputExpirationDate"
+          placeholder="Data" ng-model="expirationDate" ui-date-mask="DD-MM-YYYY">
+      </div>
+      <div class="form-group">
+        <label for="inputValue">Valor</label>
+        <input type="text" class="form-control" id="inputValue"
+          placeholder="Valor em reais" ui-money-mask ng-model="protest.payment.value">
       </div>
       <div class="form-group">
         <label for="inputInstallments">Número de parcelas</label>
         <input type="text" class="form-control" id="inputInstallments"
-          placeholder="Número inteiro" ng-model="protest.payment.numberOfInstallments">
+          placeholder="Número inteiro" ui-number-mask="0" ui-hide-group-sep ng-model="protest.payment.numberOfInstallments">
       </div>
       <div class="form-group">
         <label for="inputFirstInstallment">Valor da primeira parcela</label>
         <input type="text" class="form-control" id="inputFirstInstallment"
-          placeholder="Valor em reais" ng-model="protest.payment.firstInstallmentValue">
+          placeholder="Valor em reais" ui-money-mask ng-model="protest.payment.firstInstallmentValue">
       </div>
       <div class="form-group">
         <label for="inputDocumentType">Tipo de documento</label>
@@ -69,7 +79,7 @@
       <div class="form-group">
         <label for="inputDebtorDocument">CPF/CNPJ</label>
         <input type="text" class="form-control" id="inputDebtorDocument"
-          placeholder="CPF ou CNPJ" ng-model="protest.payment.debtorDocument">
+          placeholder="CPF ou CNPJ" ui-br-cpfcnpj-mask ng-model="protest.payment.debtorDocument">
       </div>
       <div class="form-group">
         <label for="inputDebtorName">Nome</label>
@@ -99,7 +109,7 @@
       <div class="form-group">
         <label for="inputZip">CEP</label>
         <input type="text" class="form-control" id="inputZip"
-          placeholder="Código de Endereço Postal" ng-model="protest.payment.debtor.zipcode">
+          placeholder="Código de Endereço Postal" ui-number-mask="0" ui-hide-group-sep ng-model="protest.payment.debtor.zipcode">
       </div>
 
       <button class="btn btn-primary" ng-click="editProtest()">Atualizar</button>

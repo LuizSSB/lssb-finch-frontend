@@ -22,8 +22,8 @@
           <tr ng-repeat="protest in protests" ng-click="editProtest(protest)">
             <th scope="row">{{protest.internalId}}</th>
             <td class="text-right">{{protest.paymentTitleNumber}}</td>
-            <td class="text-right">{{protest.payment.value}}</td>
-            <td class="text-right">{{protest.value}}</td>
+            <td class="text-right">{{protest.payment.value | currency}}</td>
+            <td class="text-right">{{protest.value | currency}}</td>
             <td>{{protest.payment.bankId}}</td>
             <td>{{protest.payment.creditorName}}</td>
             <td>{{protest.payment.debtor.name}}</td>
