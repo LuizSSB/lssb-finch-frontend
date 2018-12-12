@@ -5,21 +5,26 @@
   </div>
 
   <div class="panel panel-primary">
-    <div class="panel-heading">Login</div>
+    <div class="panel-heading">{{panelHeader}}</div>
     <div class="panel-body">
-	    <div class="form-group">
-	        <label class="sr-only" for="inputEmail">Nome de usuário</label>
-	        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-	    </div>
-	    <div class="form-group">
-	        <label class="sr-only" for="inputPassword">Senha</label>
-	        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-	    </div>
-	    <div class="checkbox">
-	        <label><input type="checkbox"> Lembrar login</label>
-	    </div>
-	    <button class="btn btn-primary">Entrar</button>
-	    <button class="btn btn-secondary" ng-click="goToRegistration()">Registrar-se</button>
+      <div class="form-group">
+          <input type="text" class="form-control" id="inputUsername"
+            placeholder="Nome de Usuário" ng-model="username">
+      </div>
+      <div class="form-group" ng-show="registering">
+          <input type="text" class="form-control" id="inputEmail"
+            placeholder="Email" ng-model="email">
+      </div>
+      <div class="form-group">
+          <input type="password" class="form-control" id="inputPassword"
+            placeholder="Senha" ng-model="password">
+      </div>
+      <div class="checkbox">
+          <label><input type="checkbox" ng-model="rememberMe"> Lembrar login</label>
+      </div>
+      <button class="btn btn-primary" ng-click="logIn()" ng-show="!registering">Entrar</button>
+      <button class="btn btn-primary" ng-click="register()" ng-show="registering">Registrar e Entrar</button>
+      <button class="btn btn-secondary" ng-click="toggleRegistration()">{{registrationToggleTitle}}</button>
     </div>
   </div>
 </div>

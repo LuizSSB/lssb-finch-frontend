@@ -17,7 +17,6 @@ angular
 
       $routeProvider
         .when('/login', { template: '<login></login>' })
-        .when('/register', { template: '<registration></registration>' })
         .when('/protests', { template: '<protests></protests>' })
         .otherwise('/login');
     }
