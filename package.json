@@ -1,13 +1,14 @@
 {
-  "name": "angular-seed",
-  "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
-  "license": "MIT",
+  "name": "FinchFrontEnd",
+  "private": false,
+  "version": "0.1.0",
+  "description": "Parte frontend do desafio para a vaga de analista/desenvolvedor na empresa Finch. ",
+  "repository": "https://github.com/LuizSSB/lssb-finch-frontend.git",
+  "license": "None",
   "dependencies": {
     "angular": "^1.7.5",
     "angular-loader": "^1.7.5",
+    "angular-local-storage": "^0.7.1",
     "angular-route": "^1.7.5",
     "html5-boilerplate": "0.0.1"
   },
