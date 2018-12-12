@@ -59,7 +59,7 @@ angular
       }
 
       function updateProtest (updateRequest) {
-        return _performHttpAction('put', 'protests', updateRequest);
+        return _performHttpAction('put', 'protests/update', updateRequest);
       }
 
       function uploadProtests (uploadRequest) {

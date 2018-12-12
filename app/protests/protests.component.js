@@ -14,7 +14,9 @@ angular
             .then(protests => {
               $scope.protests = protests;
             })
-            .catch(ex => AlertUtil.wsExceptionTryAgain(ex, search))
+            .catch(ex => AlertUtil.wsExceptionTryAgain(
+              ex, (confirmed) => confirmed && search()
+            ))
         }
 
         $scope.editProtest = function (protest) {

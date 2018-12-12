@@ -12,7 +12,9 @@ angular
               $scope.protest = protest;
               $scope.enabled = true;
             })
-            .catch(ex => AlertUtil.wsExceptionTryAgain(ex, getProtest))
+            .catch(ex => AlertUtil.wsExceptionTryAgain(
+              ex, (confirmed) => confirmed ? getProtest() : $location.path('protests')
+            ));
         }
 
         function editProtest () {
@@ -27,7 +29,6 @@ angular
         }
 
         $scope.protestId = $routeParams.protestId;
-        $scope.enabled = false;
         $scope.editProtest = editProtest;
         $scope.cancel = () => $location.path('protests');
 

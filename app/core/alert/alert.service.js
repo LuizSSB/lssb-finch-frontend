@@ -49,7 +49,7 @@ angular
               title: DEFAULT_TITLE_SUCCESS,
               text: msg,
               type: 'success',
-              showCancelButton: true,
+              showCancelButton: false,
               closeOnConfirm: true
             },
             callback
