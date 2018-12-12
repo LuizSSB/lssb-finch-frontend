@@ -6,25 +6,44 @@ angular
     function ($http) {
     	const BASE_URL = "http://localhost:50861/"
 
-    	let _requestFilter;
+    	let _requestFilter = null;
     	function setRequestFilter (filter) {
     		_requestFilter = filter;
     	}
     	function getRequestFilter () {
-    		return _requestFilter || () => {};
+    		return _requestFilter || function (action, path, data) {};
     	}
 
     	function _performHttpAction (action, path, data) {
-    		const url = BASE_URL + path;
-    		getRequestFilter()(action, url, data);
+            const requestFilter = getRequestFilter();
+            _requestFilter(action, path, data);
+
+            let queryString = "?format=json";
+            if (action === 'get') {
+                for (let key in data) {
+                    queryString += `&${key}=${data[key]}`;
+                }
+            }
+
+            const url = BASE_URL + path + queryString;
     		return $http[action](url, data)
     			.then((res) => res.data);
     	}
 
     	function logIn (username, password, rememberMe) {
-    		return _performHttpAction ('get', '/auth/credentials', {
+    		return _performHttpAction('get', '/auth/credentials', {
     			username, password, rememberMe
     		})
+                .then(data => {
+                    const user = DTO.new.User();
+                    user.username = data.UserName;
+                    user.sessionId = data.SessionId;
+                    return user;
+                })
+    	}
+
+    	function register (user) {
+    		// return _performHttpAction('post', '')
     	}
 
     	return {

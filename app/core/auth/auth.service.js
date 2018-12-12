@@ -1,35 +1,46 @@
 'use strict';
 
 angular
-  .module('finch.auth', ['finch.serviceClient'])
-  .factory('Auth', ['ServiceClient',
-    function (ServiceClient) {
+  .module('finch.auth', ['LocalStorageModule', 'finch.serviceClient'])
+  .factory('Auth', ['localStorageService', 'ServiceClient',
+    function (localStorageService, ServiceClient) {
+    	const KEY_SESSION = 'session';
+    	function _getSession () {
+    		return localStorageService.get(KEY_SESSION) || null;
+    	}
+    	function _setSession (session) {
+    		return localStorageService.set(KEY_SESSION, session);
+    	}
+
     	ServiceClient.setRequestFilter(function (action, url, data) {
-    		if (isLoggedIn()) {
-    			data.sessionId = 'token';
-    		}
+    		data.sessionId = _getSession();
     	});
 
     	function isLoggedIn () {
-    		return false;
+    		return _getSession() !== null;
     	}
 
     	function logIn (username, password, rememberMe) {
     		return ServiceClient.logIn(username, password, rememberMe)
-    			.then((data) => {
-
+    			.then((user) => {
+    				_setSession(user);
     			});
     	}
 
     	function logOut () {
+    		return new Promise((resolve, reject) => {
+    			_setSessionId(null);
+    			resolve();
+    		});
     	}
 
     	function register (username, password, email) {
+            
     	}
 
     	return  {
-    		isAuthenticated,
-    		logInt,
+    		isLoggedIn,
+    		logIn,
     		logOut,
     		register
     	};

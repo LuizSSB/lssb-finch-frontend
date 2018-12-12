@@ -1,13 +1,24 @@
 'use strict';
 
-angular.
-  module('finch').
-  config(['$routeProvider',
-    function config($routeProvider) {
-      $routeProvider.
-        when('/login', {
-          template: '<login></login>'
-        }).
-        otherwise('/login');
+angular
+  .module('finch', [
+    'ngRoute',
+    'LocalStorageModule',
+
+    'finch.login',
+    'finch.protests',
+
+    'finch.auth',
+    'finch.serviceClient',
+  ])
+  .config(['$routeProvider', 'localStorageServiceProvider',
+    function config($routeProvider, localStorageServiceProvider) {
+      localStorageServiceProvider.setPrefix('finch');
+
+      $routeProvider
+        .when('/login', { template: '<login></login>' })
+        .when('/register', { template: '<registration></registration>' })
+        .when('/protests', { template: '<protests></protests>' })
+        .otherwise('/login');
     }
   ]);

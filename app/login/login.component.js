@@ -1,11 +1,15 @@
 'use strict';
 
 angular
-  .module('finch.login', ['finch.auth'])
+  .module('finch.login', ['ngRoute', 'finch.auth'])
   .component('login', {
     templateUrl: 'login/login.template.html',
-    controller: ['Auth', function LoginController (Auth) {
-        var self = this;
-        console.log('Hey', Auth);
-    }]
+    controller: ['$scope', '$location', 'Auth',
+      function LoginController ($scope, $location, Auth) {
+        console.log($scope, $location);
+          $scope.goToRegistration = function () {
+            $location.path('register');
+          }
+      }
+    ]
   });
