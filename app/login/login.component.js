@@ -10,10 +10,6 @@ angular
           $location.path('protests');
         }
 
-        if (Auth.isLoggedIn()) {
-          _goMainPage();
-        }
-
         $scope.toggleRegistration = () => {
           $scope.registering = !$scope.registering;
           $scope.panelHeader =  $scope.registering ? 'Cadastro' : 'Login';

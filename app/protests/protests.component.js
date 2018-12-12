@@ -1,10 +1,10 @@
 'use strict';
 
 angular
-  .module('finch.protests', ['ngRoute', 'finch.auth'])
+  .module('finch.protests', ['ngRoute'])
   .component('protests', {
     templateUrl: 'protests/protests.template.html',
-    controller: ['$location', 'Auth', function ProtestsController ($location, Auth) {
+    controller: [function ProtestsController () {
         var self = this;
     }]
   });
