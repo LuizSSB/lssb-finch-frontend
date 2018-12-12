@@ -62,6 +62,10 @@ angular
         return _performHttpAction('put', 'protests', updateRequest);
       }
 
+      function uploadProtests (uploadRequest) {
+        return _performHttpAction('post', 'protests/file', uploadRequest);
+      }
+
       return {
         getRequestFilter,
         setRequestFilter,
@@ -69,7 +73,8 @@ angular
         register,
         searchProtests,
         getProtest,
-        updateProtest
+        updateProtest,
+        uploadProtests
       };
     }
   ]);

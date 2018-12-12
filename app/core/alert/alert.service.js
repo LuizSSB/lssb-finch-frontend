@@ -10,8 +10,8 @@ angular
       function _getMessage (ex) {
         switch (ex.status) {
           case 400:
-            return 'Campos preenchidos incorretamente. ' +
-            'Certifique-se de que todos os campos estão preenchidos e que não repetem dados já cadastrados.';
+            return 'Dados inválidos. ' +
+            'Certifique-se que todos os campos estão preenchidos corretamente e que não repetem dados já cadastrados.';
           case 401:
             return 'Ops, parece que o seu usuário não existe.\nCertifique-se que seus dados estão corretos.';
           default:
@@ -39,6 +39,9 @@ angular
             }, 
             tryAgain
           );
+        },
+        error: (msg) => {
+          SweetAlert.swal(DEFAULT_TITLE_ERROR, msg, 'warning');
         },
         success: (msg, callback) => {
           SweetAlert.swal(

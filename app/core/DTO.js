@@ -29,6 +29,9 @@ const DTO = {
     UpdateProtestRequest: _new({
       protest: null,
       updatesRefenreces: true
+    }),
+    UploadProtestsRequest: _new({
+      textContents: null
     })
   },
 };

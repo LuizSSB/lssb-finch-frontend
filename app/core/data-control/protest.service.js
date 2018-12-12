@@ -18,10 +18,27 @@ angular
         }));
       }
 
+      function upload (protestsFile) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            resolve(ServiceClient.uploadProtests(
+              DTO.new.UploadProtestsRequest({ textContents: reader.result })
+            ));
+          };
+          reader.onerror = () => {
+            reader.abort();
+            reject(-1);
+          };
+          reader.readAsText(protestsFile);
+        })
+      }
+
       return {
         search,
         getById,
-        update
+        update,
+        upload
       };
     }
   ]);

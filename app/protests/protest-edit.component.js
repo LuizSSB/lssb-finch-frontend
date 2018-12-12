@@ -20,7 +20,7 @@ angular
           $scope.protest.payment.debtor.document = $scope.protest.payment.debtorDocument;
 
           ProtestDataCtrl.update($scope.protest)
-            .then(ignored => {
+            .then(() => {
               AlertUtil.success('Protesto alterado!', () => $location.path('protests'));
             })
             .catch(ex => AlertUtil.wsException);

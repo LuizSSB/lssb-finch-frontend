@@ -43,6 +43,10 @@ angular
           template: '<protests></protests>',
           resolve: authenticatedResolution
         })
+        .when('/protests/file', {
+          template: '<protests-upload></protests-upload>',
+          resolve: authenticatedResolution
+        })
         .when('/protests/:protestId', {
           template: '<protest-edit></protest-edit>',
           resolve: authenticatedResolution

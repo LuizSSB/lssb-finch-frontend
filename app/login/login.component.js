@@ -17,7 +17,7 @@ angular
         };
         $scope.logIn = () => {
           return Auth.logIn($scope.username, $scope.password, $scope.rememberMe)
-            .then(ignored => _goMainPage())
+            .then(() => _goMainPage())
             .catch(AlertUtil.wsException);
         };        
         $scope.register = () => {

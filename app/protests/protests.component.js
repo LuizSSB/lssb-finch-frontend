@@ -20,6 +20,9 @@ angular
         $scope.editProtest = function (protest) {
           $location.path('protests/' + protest.internalId);
         };
+        $scope.upload = function () {
+          $location.path('protests/file');
+        };
         
         search();
       }
