@@ -21,7 +21,9 @@ angular
         let queryString = "?format=json";
         if (action === 'get') {
           for (let key in data) {
-            queryString += `&${key}=${data[key]}`;
+            if (data[key] !== undefined && data[key] !== null) {
+              queryString += `&${key}=${data[key]}`;
+            }
           }
         }
 
@@ -46,11 +48,28 @@ angular
         return _performHttpAction('post', 'register', user);
       }
 
+      function searchProtests (searchRequest) {
+        return _performHttpAction('get', 'protests', searchRequest)
+          .then(data => data.protests);
+      }
+
+      function getProtest (protestId) {
+        return _performHttpAction('get', 'protests/' + protestId)
+          .then(data => data.protest);
+      }
+
+      function updateProtest (updateRequest) {
+        return _performHttpAction('put', 'protests', updateRequest);
+      }
+
       return {
         getRequestFilter,
         setRequestFilter,
         logIn,
-        register
+        register,
+        searchProtests,
+        getProtest,
+        updateProtest
       };
     }
   ]);

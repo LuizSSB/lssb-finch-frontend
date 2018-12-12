@@ -18,12 +18,12 @@ angular
         $scope.logIn = () => {
           return Auth.logIn($scope.username, $scope.password, $scope.rememberMe)
             .then(ignored => _goMainPage())
-            .catch(err => AlertUtil.alertWSException(err));
+            .catch(AlertUtil.wsException);
         };        
         $scope.register = () => {
           return Auth.register($scope.username, $scope.password, $scope.email)
             .then($scope.logIn)
-            .catch(err => AlertUtil.alertWSException(err));
+            .catch(AlertUtil.wsException);
         };
 
         $scope.rememberMe = false;

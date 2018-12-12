@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Editar Protesto</div>
+    <div class="panel-body">
+      <h1>Protesto {{protestId}}</h1>
+      <div class="form-group">
+        <label for="inputProtestValue">Valor Protestado</label>
+        <input type="text" class="form-control" id="inputProtestValue"
+          placeholder="Valor em reais" ng-model="protest.value">
+      </div>
+      
+      <hr />
+
+      <h2>Pagamento</h2>
+      <div class="form-group">
+        <label for="inputTitleNumber">Número Título</label>
+        <input type="text" class="form-control" id="inputTitleNumber"
+          placeholder="Número inteiro" ng-model="protest.paymentTitleNumber">
+      </div>
+      <div class="form-group">
+        <label for="inputBankId">Código do Banco</label>
+        <input type="text" class="form-control" id="inputBankId"
+          placeholder="Número inteiro" ng-model="protest.payment.bankId">
+      </div>
+      <div class="form-group">
+        <label for="inputCreditorName">Nome do credor</label>
+        <input type="text" class="form-control" id="inputCreditorName"
+          placeholder="Nome" ng-model="protest.payment.creditorName">
+      </div>
+      <div class="form-group">
+        <label for="inputEmissionDate">Data da emissão</label>
+        <input type="text" class="form-control" id="inputEmissionDate"
+          placeholder="Data" ng-model="protest.payment.emissionDateTimestamp">
+      </div>
+      <div class="form-group">
+        <label for="inputInstallments">Número de parcelas</label>
+        <input type="text" class="form-control" id="inputInstallments"
+          placeholder="Número inteiro" ng-model="protest.payment.numberOfInstallments">
+      </div>
+      <div class="form-group">
+        <label for="inputFirstInstallment">Valor da primeira parcela</label>
+        <input type="text" class="form-control" id="inputFirstInstallment"
+          placeholder="Valor em reais" ng-model="protest.payment.firstInstallmentValue">
+      </div>
+      <div class="form-group">
+        <label for="inputDocumentType">Tipo de documento</label>
+        <input type="text" class="form-control" id="inputDocumentType"
+          placeholder="Tipo do documento" ng-model="protest.payment.documentType">
+      </div>
+      <div class="form-group">
+        <label for="inputOperation">Operação</label>
+        <input type="text" class="form-control" id="inputOperation"
+          placeholder="Operação" ng-model="protest.payment.operation">
+      </div>
+      <div class="form-group">
+        <label for="inputPaymentState">UF da praça</label>
+        <input type="text" class="form-control" id="inputPaymentState"
+          placeholder="Unidade Federativa" ng-model="protest.payment.stateCode">
+      </div>
+      <div class="form-group">
+        <label for="inputPaymentCity">Cidade da praça</label>
+        <input type="text" class="form-control" id="inputPaymentCity"
+          placeholder="Cidade" ng-model="protest.payment.city">
+      </div>
+
+      <hr />
+
+      <h2>Devedor</h2>
+      <div class="form-group">
+        <label for="inputDebtorDocument">CPF/CNPJ</label>
+        <input type="text" class="form-control" id="inputDebtorDocument"
+          placeholder="CPF ou CNPJ" ng-model="protest.payment.debtorDocument">
+      </div>
+      <div class="form-group">
+        <label for="inputDebtorName">Nome</label>
+        <input type="text" class="form-control" id="inputDebtorName"
+          placeholder="Nome" ng-model="protest.payment.debtor.name">
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Endereço</label>
+        <input type="text" class="form-control" id="inputAddress"
+          placeholder="Rua e número" ng-model="protest.payment.debtor.address">
+      </div>
+      <div class="form-group">
+        <label for="inputNeighborhood">Bairro</label>
+        <input type="text" class="form-control" id="inputNeighborhood"
+          placeholder="Bairro" ng-model="protest.payment.debtor.neighborhood">
+      </div>
+      <div class="form-group">
+        <label for="inputCity">Cidade</label>
+        <input type="text" class="form-control" id="inputCity"
+          placeholder="Cidade" ng-model="protest.payment.debtor.city">
+      </div>
+      <div class="form-group">
+        <label for="inputState">UF</label>
+        <input type="text" class="form-control" id="inputState"
+          placeholder="Unidade Federativa" ng-model="protest.payment.debtor.stateCode">
+      </div>
+      <div class="form-group">
+        <label for="inputZip">CEP</label>
+        <input type="text" class="form-control" id="inputZip"
+          placeholder="Código de Endereço Postal" ng-model="protest.payment.debtor.zipcode">
+      </div>
+
+      <button class="btn btn-primary" ng-click="editProtest()">Atualizar</button>
+      <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+    </div>
+  </div>
+</div>

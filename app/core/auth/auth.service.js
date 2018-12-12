@@ -13,7 +13,11 @@ angular
       }
 
       ServiceClient.setRequestFilter(function (action, url, data) {
-        data.sessionId = _getSession();
+        let session = _getSession();
+
+        if (session && data) {
+          data.sessionId = session.sessionId;
+        }
       });
 
       function isLoggedIn () {

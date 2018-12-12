@@ -12,7 +12,9 @@ angular
 
     'finch.auth',
     'finch.serviceClient',
-    'finch.alert'
+    'finch.alert',
+
+    'finch.dataControl'
   ])
   .config(['$routeProvider', 'localStorageServiceProvider',
     function config($routeProvider, localStorageServiceProvider, Auth) {
@@ -39,6 +41,10 @@ angular
         })
         .when('/protests', {
           template: '<protests></protests>',
+          resolve: authenticatedResolution
+        })
+        .when('/protests/:protestId', {
+          template: '<protest-edit></protest-edit>',
           resolve: authenticatedResolution
         })
         .otherwise('/login');
