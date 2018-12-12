@@ -1,10 +1,9 @@
 'use strict';
 
 angular
-  .module('finch.serviceClient', [])
-  .factory('ServiceClient', ['$http',
-    function ($http) {
-      const BASE_URL = "http://localhost:50861/"
+  .module('finch.serviceClient', ['finch.config'])
+  .factory('ServiceClient', ['$http', 'Config',
+    function ($http, Config) {
 
       let _requestFilter = null;
       function setRequestFilter (filter) {
@@ -25,7 +24,7 @@ angular
           }
         }
 
-        const url = BASE_URL + path + queryString;
+        const url = Config.getBaseURL() + path + queryString;
         return $http[action](url, data)
           .then((res) => res.data);
       }
