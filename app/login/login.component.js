@@ -1,11 +1,11 @@
 'use strict';
 
 angular
-  .module('finch.login', ['ngRoute', 'finch.auth'])
+  .module('finch.login', ['ngRoute', 'finch.alert', 'finch.auth'])
   .component('login', {
     templateUrl: 'login/login.template.html',
-    controller: ['$scope', '$location', 'Auth',
-      function LoginController ($scope, $location, Auth) {
+    controller: ['$scope', '$location', 'AlertUtil', 'Auth',
+      function LoginController ($scope, $location, AlertUtil, Auth) {
         function _goMainPage () {
           $location.path('protests');
         }
@@ -22,11 +22,12 @@ angular
         $scope.logIn = () => {
           return Auth.logIn($scope.username, $scope.password, $scope.rememberMe)
             .then(ignored => _goMainPage())
-            .catch(err => console.log(err));
+            .catch(err => AlertUtil.alertWSException(err));
         };        
         $scope.register = () => {
           return Auth.register($scope.username, $scope.password, $scope.email)
-            .then($scope.logIn);
+            .then($scope.logIn)
+            .catch(err => AlertUtil.alertWSException(err));
         };
 
         $scope.rememberMe = false;

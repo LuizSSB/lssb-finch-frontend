@@ -5,11 +5,14 @@ angular
     'ngRoute',
     'LocalStorageModule',
 
+    'oitozero.ngSweetAlert',
+
     'finch.login',
     'finch.protests',
 
     'finch.auth',
     'finch.serviceClient',
+    'finch.alert'
   ])
   .config(['$routeProvider', 'localStorageServiceProvider',
     function config($routeProvider, localStorageServiceProvider) {
