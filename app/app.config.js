@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 angular
   .module('finch', [
@@ -17,24 +17,24 @@ angular
     'finch.dataControl'
   ])
   .config(['$routeProvider', 'localStorageServiceProvider',
-    function config($routeProvider, localStorageServiceProvider, Auth) {
-      localStorageServiceProvider.setPrefix('finch');
+    function config ($routeProvider, localStorageServiceProvider, Auth) {
+      localStorageServiceProvider.setPrefix('finch')
 
-      const authenticatedResolution =  {
+      const authenticatedResolution = {
         mess: function ($location, Auth) {
           if (!Auth.isLoggedIn()) {
-            $location.path('login');
+            $location.path('login')
           }
         }
-      };
+      }
 
       $routeProvider
-        .when('/login', { 
+        .when('/login', {
           template: '<login></login>',
           resolve: {
             mess: function ($location, Auth) {
               if (Auth.isLoggedIn()) {
-                $location.path('protests');
+                $location.path('protests')
               }
             }
           }
@@ -51,6 +51,6 @@ angular
           template: '<protest-edit></protest-edit>',
           resolve: authenticatedResolution
         })
-        .otherwise('/login');
+        .otherwise('/login')
     }
-  ]);
+  ])

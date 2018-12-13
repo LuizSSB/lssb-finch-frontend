@@ -1,13 +1,13 @@
 function _new (base) {
   return function (data) {
-    const newObj = Object.assign({}, base);
+    const newObj = Object.assign({}, base)
     for (var key in newObj) {
       if (data[key]) {
-        newObj[key] = data[key];
+        newObj[key] = data[key]
       }
     }
-    return newObj;
-  };
+    return newObj
+  }
 }
 
 const DTO = {
@@ -33,5 +33,5 @@ const DTO = {
     UploadProtestsRequest: _new({
       textContents: null
     })
-  },
-};
+  }
+}
