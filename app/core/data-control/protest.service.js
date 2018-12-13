@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 angular
   .module('finch.dataControl', ['finch.serviceClient'])
@@ -9,28 +9,28 @@ angular
       }
 
       function getById (protestInternalId) {
-        return ServiceClient.getProtest(protestInternalId);
+        return ServiceClient.getProtest(protestInternalId)
       }
 
       function update (protest) {
         return ServiceClient.updateProtest(DTO.new.UpdateProtestRequest({
           protest
-        }));
+        }))
       }
 
       function upload (protestsFile) {
         return new Promise((resolve, reject) => {
-          const reader = new FileReader();
+          const reader = new FileReader()
           reader.onload = () => {
             resolve(ServiceClient.uploadProtests(
               DTO.new.UploadProtestsRequest({ textContents: reader.result })
-            ));
-          };
+            ))
+          }
           reader.onerror = () => {
-            reader.abort();
-            reject(-1);
-          };
-          reader.readAsText(protestsFile);
+            reader.abort()
+            reject(new Error())
+          }
+          reader.readAsText(protestsFile)
         })
       }
 
@@ -39,6 +39,6 @@ angular
         getById,
         update,
         upload
-      };
+      }
     }
-  ]);
+  ])
