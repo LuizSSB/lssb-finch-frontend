@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Upload</div>
+    <div class="panel-body">
+      <div class="form-group">
+          <label for="inputFile">Arquivo CSV de Protestos</label>
+          <input type="file" ng-file-select="onFileSelect($files) class="form-control" id="inputFile" ng-model="file">
+      </div>
+      <button class="btn btn-primary" ng-click="submit()">Submeter</button>
+      <button class="btn btn-secondary" ng-click="cancel()">Cancelar</button>
+    </div>
+  </div>
+</div>
