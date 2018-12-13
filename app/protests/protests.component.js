@@ -28,6 +28,7 @@ angular
         $scope.editProtest = protest => $location.path('protests/' + protest.internalId);
         $scope.upload = () => $location.path('protests/file');
         $scope.logOut = () => Auth.logOut().then(() => window.location.reload());
+        $scope.username = Auth.getLoggedUser().username;
         $scope.clean = () => {
           $scope.minValue = undefined;
           $scope.maxValue = undefined;

@@ -6,11 +6,17 @@ angular
     templateUrl: 'protests/protest-edit.template.html',
     controller: ['$scope', '$routeParams', '$location', 'ProtestDataCtrl', 'AlertUtil',
       function ProtestEditController ($scope, $routeParams, $location, ProtestDataCtrl, AlertUtil) {
+        function _timestampToDate (timestamp) {
+          return timestamp ? new Date(timestamp * 1000) : '';
+        }
+
         function getProtest () {
           ProtestDataCtrl.getById($routeParams.protestId)
             .then(protest => {
-              $scope.emissionDate = new Date(protest.payment.emissionTimestamp * 1000);
-              $scope.expirationDate = new Date(protest.payment.expirationTimestamp * 1000);
+              $scope.createdDate = _timestampToDate(protest.createdTimestamp);
+              $scope.updatedDate = _timestampToDate(protest.updatedTimestamp);
+              $scope.emissionDate = _timestampToDate(protest.payment.emissionTimestamp);
+              $scope.expirationDate = _timestampToDate(protest.payment.expirationTimestamp);
               $scope.protest = protest;
               $scope.enabled = true;
             })
