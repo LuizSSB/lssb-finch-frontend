@@ -11,6 +11,10 @@ angular
         }
       });
 
+      function getLoggedUser () {
+        return Config.getSession();
+      }
+
       function isLoggedIn () {
         return !!Config.getSession();
       }
@@ -35,6 +39,7 @@ angular
       }
 
       return  {
+        getLoggedUser,
         isLoggedIn,
         logIn,
         logOut,
