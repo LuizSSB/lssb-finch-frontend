@@ -5,7 +5,10 @@ angular
   .factory('Auth', ['Config', 'ServiceClient',
     function (Config, ServiceClient) {
       ServiceClient.setRequestFilter(function (action, url, data) {
-        data.sessionId = Config.getSession().sessionId;
+        const session = Config.getSession()
+        if (session && data) {
+          data.sessionId = session.sessionId; 
+        }
       });
 
       function isLoggedIn () {

@@ -7,9 +7,14 @@ angular
     controller: ['$scope', '$location', 'ProtestDataCtrl', 'AlertUtil', 'Auth',
       function ProtestsController ($scope, $location, ProtestDataCtrl, AlertUtil, Auth) {
         function search () {
-          const request = DTO.new.SearchProtestRequest({
+          if ($scope.maxValue < 0.01) {
+            $scope.maxValue = undefined;
+          }
+          if ($scope.minValue < 0.01) {
+            $scope.minValue = undefined;
+          }
 
-          });
+          const request = DTO.new.SearchProtestRequest($scope);
           ProtestDataCtrl.search(request)
             .then(protests => {
               $scope.protests = protests;
@@ -19,11 +24,20 @@ angular
             ))
         }
 
-        $scope.editProtest = () => location.path('protests/' + protest.internalId);
+        $scope.search = search;
+        $scope.editProtest = protest => $location.path('protests/' + protest.internalId);
         $scope.upload = () => $location.path('protests/file');
         $scope.logOut = () => Auth.logOut().then(() => window.location.reload());
-        
-        search();
+        $scope.clean = () => {
+          $scope.minValue = undefined;
+          $scope.maxValue = undefined;
+          $scope.bankId = undefined;
+          $scope.debtor = undefined;
+
+          search();
+        };
+
+        $scope.clean();
       }
     ]
   });
