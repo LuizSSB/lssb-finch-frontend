@@ -1,12 +1,11 @@
 
-# Teste Finch
-Aplicação AngularJS de teste para a vaga de *Desenvolvedor/Analista*, na empresa Finch.
+# Teste Finch - frontend
+Aplicação web relativa ao frontend do teste para a vaga de *Desenvolvedor/Analista*, na empresa Finch.
 
 A aplicação possui autenticação/cadastro e permite a visualização, edição e upload de registros de protestos de títulos de pagamento.
 
 ## Características
  - Linguagens: HTML5/JavaScript/CSS;
- - Framework: AngularJS 1.7.5;
  - Dependências:
   - angular: "^1.7.5"
   - angular-input-masks: "^4.2.1",
@@ -16,7 +15,7 @@ A aplicação possui autenticação/cadastro e permite a visualização, ediçã
   - angular-sweetalert: "^1.1.2",
   - html5-boilerplate: "0.0.1".
 
-Projeto criado a partir do angular-seed. Usa a referência inclusa do bootstrap incluso para UI.
+Projeto criado a partir do angular-seed. Usa a referência inclusa do bootstrap para montar UI.
 
 Tela de login com dupla função: funciona para cadastro também. Além disso, permite definir o endereço do servidor.
 
@@ -62,5 +61,6 @@ Inclui os seguintes componentes:
  - Paginação na listagem de protestos;
  - Mais filtros na busca.
  - Cabeçalho nas telas logadas.
+ - Indicador de atividade nas consultas a web services.
 
 -- Luiz Soares dos Santos Baglie (luizssb.biz *at* gmail *dot* com)

@@ -1,7 +1,7 @@
 {
-  "name": "FinchFrontEnd",
+  "name": "FinchFrontend",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parte frontend do desafio para a vaga de analista/desenvolvedor na empresa Finch. ",
   "repository": "https://github.com/LuizSSB/lssb-finch-frontend.git",
   "license": "None",
