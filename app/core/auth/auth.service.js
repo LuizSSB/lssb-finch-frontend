@@ -1,14 +1,18 @@
 'use strict';
 
 angular
-  .module('finch.auth', ['finch.config', 'finch.serviceClient'])
-  .factory('Auth', ['Config', 'ServiceClient',
-    function (Config, ServiceClient) {
-      ServiceClient.setRequestFilter(function (action, url, data) {
+  .module('finch.auth', ['finch.config', 'finch.serviceClient', 'ngRoute'])
+  .factory('Auth', ['Config', 'ServiceClient', '$location',
+    function (Config, ServiceClient, $location) {
+      ServiceClient.setRequestFilter((action, url, data) => {
         const session = Config.getSession()
         if (session && data) {
           data.sessionId = session.sessionId; 
         }
+      });
+
+      ServiceClient.setUnauthorizedHandler((action, url, data) => {
+        logOut().then(() => $location.path('login'))
       });
 
       function getLoggedUser () {
@@ -21,9 +25,7 @@ angular
 
       function logIn (username, password, rememberMe) {
         return ServiceClient.logIn(username, password, rememberMe)
-          .then((user) => {
-            Config.setSession(user);
-          });
+          .then(user => Config.setSession(user));
       }
 
       function logOut () {

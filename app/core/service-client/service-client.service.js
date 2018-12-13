@@ -10,12 +10,22 @@ angular
         _requestFilter = filter;
       }
       function getRequestFilter () {
-        return _requestFilter || function (action, path, data) {};
+        return _requestFilter || function () {};
       }
 
-      function _performHttpAction (action, path, data) {
+      let _unauthorizedHandler = null;
+      function setUnauthorizedHandler (handler) {
+        _unauthorizedHandler = handler;
+      }
+      function getUnauthorizedHandler () {
+        return _unauthorizedHandler || function () {};
+      }
+
+      function _performHttpAction (action, path, data, options) {
+        data = data || {};
+        options = options || {};
         const requestFilter = getRequestFilter();
-        _requestFilter(action, path, data);
+        requestFilter(action, path, data || {});
 
         let queryString = "?format=json";
         if (action === 'get') {
@@ -28,13 +38,21 @@ angular
 
         const url = Config.getBaseURL() + path + queryString;
         return $http[action](url, data)
-          .then((res) => res.data);
+          .then(res => res.data)
+          .catch(ex => {
+            if (ex.status === 401 && !options.ignoreUnauthorized) {
+              const unauthorizedHandler = getUnauthorizedHandler();
+              unauthorizedHandler(action, path, data);
+            }
+
+            throw ex;
+          });
       }
 
       function logIn (username, password, rememberMe) {
         return _performHttpAction('get', 'auth/credentials', {
           username, password, rememberMe
-        })
+        }, { ignoreUnauthorized: true})
           .then(data => {
             return DTO.new.User({
               username: data.UserName,
@@ -68,6 +86,8 @@ angular
       return {
         getRequestFilter,
         setRequestFilter,
+        setUnauthorizedHandler,
+        getUnauthorizedHandler,
         logIn,
         register,
         searchProtests,
