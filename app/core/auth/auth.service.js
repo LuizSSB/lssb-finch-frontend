@@ -5,11 +5,11 @@ angular
   .factory('Auth', ['Config', 'ServiceClient',
     function (Config, ServiceClient) {
       ServiceClient.setRequestFilter(function (action, url, data) {
-        data.sessionId = Config.getSession();
+        data.sessionId = Config.getSession().sessionId;
       });
 
       function isLoggedIn () {
-        return Config.getSession() !== null;
+        return !!Config.getSession();
       }
 
       function logIn (username, password, rememberMe) {
@@ -21,7 +21,7 @@ angular
 
       function logOut () {
         return new Promise((resolve, reject) => {
-          Config.setSessionId(null);
+          Config.setSession();
           resolve();
         });
       }

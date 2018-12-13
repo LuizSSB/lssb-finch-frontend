@@ -5,7 +5,7 @@ angular
   .factory('Config', ['localStorageService',
     function (localStorageService) {
       const KEY_SESSION = 'session';
-      const KEY_BASEURL = 'session';
+      const KEY_BASEURL = 'baseURL';
 
       return {
         getSession: () => localStorageService.get(KEY_SESSION) || null,
