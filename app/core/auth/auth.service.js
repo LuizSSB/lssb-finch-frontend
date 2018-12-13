@@ -1,35 +1,34 @@
 'use strict';
 
 angular
-  .module('finch.auth', ['LocalStorageModule', 'finch.serviceClient'])
-  .factory('Auth', ['localStorageService', 'ServiceClient',
-    function (localStorageService, ServiceClient) {
-      const KEY_SESSION = 'session';
-      function _getSession () {
-        return localStorageService.get(KEY_SESSION) || null;
-      }
-      function _setSession (session) {
-        return localStorageService.set(KEY_SESSION, session);
-      }
-
+  .module('finch.auth', ['finch.config', 'finch.serviceClient'])
+  .factory('Auth', ['Config', 'ServiceClient',
+    function (Config, ServiceClient) {
       ServiceClient.setRequestFilter(function (action, url, data) {
-        data.sessionId = _getSession();
+        const session = Config.getSession()
+        if (session && data) {
+          data.sessionId = session.sessionId; 
+        }
       });
 
+      function getLoggedUser () {
+        return Config.getSession();
+      }
+
       function isLoggedIn () {
-        return _getSession() !== null;
+        return !!Config.getSession();
       }
 
       function logIn (username, password, rememberMe) {
         return ServiceClient.logIn(username, password, rememberMe)
           .then((user) => {
-            _setSession(user);
+            Config.setSession(user);
           });
       }
 
       function logOut () {
         return new Promise((resolve, reject) => {
-          _setSessionId(null);
+          Config.setSession();
           resolve();
         });
       }
@@ -40,6 +39,7 @@ angular
       }
 
       return  {
+        getLoggedUser,
         isLoggedIn,
         logIn,
         logOut,

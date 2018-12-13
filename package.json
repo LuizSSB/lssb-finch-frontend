@@ -7,6 +7,7 @@
   "license": "None",
   "dependencies": {
     "angular": "^1.7.5",
+    "angular-input-masks": "^4.2.1",
     "angular-loader": "^1.7.5",
     "angular-local-storage": "^0.7.1",
     "angular-route": "^1.7.5",

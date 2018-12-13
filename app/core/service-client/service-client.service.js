@@ -1,10 +1,9 @@
 'use strict';
 
 angular
-  .module('finch.serviceClient', [])
-  .factory('ServiceClient', ['$http',
-    function ($http) {
-      const BASE_URL = "http://localhost:50861/"
+  .module('finch.serviceClient', ['finch.config'])
+  .factory('ServiceClient', ['$http', 'Config',
+    function ($http, Config) {
 
       let _requestFilter = null;
       function setRequestFilter (filter) {
@@ -21,11 +20,13 @@ angular
         let queryString = "?format=json";
         if (action === 'get') {
           for (let key in data) {
-            queryString += `&${key}=${data[key]}`;
+            if (data[key] !== undefined && data[key] !== null) {
+              queryString += `&${key}=${data[key]}`;
+            }
           }
         }
 
-        const url = BASE_URL + path + queryString;
+        const url = Config.getBaseURL() + path + queryString;
         return $http[action](url, data)
           .then((res) => res.data);
       }
@@ -46,11 +47,33 @@ angular
         return _performHttpAction('post', 'register', user);
       }
 
+      function searchProtests (searchRequest) {
+        return _performHttpAction('get', 'protests', searchRequest)
+          .then(data => data.protests);
+      }
+
+      function getProtest (protestId) {
+        return _performHttpAction('get', 'protests/' + protestId)
+          .then(data => data.protest);
+      }
+
+      function updateProtest (updateRequest) {
+        return _performHttpAction('put', 'protests/update', updateRequest);
+      }
+
+      function uploadProtests (uploadRequest) {
+        return _performHttpAction('post', 'protests/file', uploadRequest);
+      }
+
       return {
         getRequestFilter,
         setRequestFilter,
         logIn,
-        register
+        register,
+        searchProtests,
+        getProtest,
+        updateProtest,
+        uploadProtests
       };
     }
   ]);

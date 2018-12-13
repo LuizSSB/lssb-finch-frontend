@@ -13,10 +13,25 @@ function _new (base) {
 const DTO = {
   new: {
     User: _new({
-      username: '',
-      password: '',
-      email: '',
-      sessionId: ''
+      username: null,
+      password: null,
+      email: null,
+      sessionId: null
+    }),
+    SearchProtestRequest: _new({
+      limit: null,
+      offset: null,
+      debtor: null,
+      bank: null,
+      minValue: null,
+      maxValue: null
+    }),
+    UpdateProtestRequest: _new({
+      protest: null,
+      updatesReferences: true
+    }),
+    UploadProtestsRequest: _new({
+      textContents: null
     })
   },
 };
